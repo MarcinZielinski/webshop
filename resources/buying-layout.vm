@@ -1,0 +1,18 @@
+<html>
+<head>
+    <title>Super sklep</title>
+</head>
+<body>
+    Zapraszamy do zakupów!
+    <form action="/buy" method="post">
+        <fieldset>
+            <p>Ilość:</p>
+            <input type="text" name="quantity" required="true">
+
+            <p>Id produktu:</p>
+            <input type="text" name="productId" required="true">
+            <input type="submit" value="Kup!!">
+        </fieldset>
+    </form>
+</body>
+</html>

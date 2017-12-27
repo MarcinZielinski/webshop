@@ -1,0 +1,11 @@
+<html>
+<head>
+    <title>Super sklep</title>
+</head>
+<body>
+Produkt o podanym id nie istnieje..
+<form action="/hello" method="get">
+    <input type="submit" value="Powrót do sklepu">
+</form>
+</body>
+</html>
