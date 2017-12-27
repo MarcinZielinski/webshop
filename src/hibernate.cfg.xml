@@ -11,8 +11,7 @@
         <property name="show_sql">true</property>
         <mapping class="entities.Product"/>
         <mapping class="entities.Supplier"/>
-        <mapping class="entities.Supplier2"/>
-        <mapping class="entities.Supplier3"/>
+        <mapping class="entities.Customer"/>
         <mapping class="entities.TransactionEntity"/>
         <mapping class="entities.Category"/>
     </session-factory>

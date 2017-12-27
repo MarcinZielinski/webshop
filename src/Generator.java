@@ -8,9 +8,9 @@ import javax.persistence.EntityManager;
  */
 public class Generator {
     public static void populateDatabase(EntityManager em) {
-        Supplier sup1 = new Supplier("Wedel", "Fajna 2", "Wrocław");
-        Supplier sup2 = new Supplier("Hortex", "Lepsza 18", "Poznań");
-        Supplier sup3 = new Supplier("PolskieGruszki", "Ciekawa 3", "Kraków");
+        Supplier sup1 = new Supplier("Wedel", "Fajna 2", "Wrocław", "31-333", 12312333L);
+        Supplier sup2 = new Supplier("Hortex", "Lepsza 18", "Poznań", "33-333", 323333L);
+        Supplier sup3 = new Supplier("PolskieGruszki", "Ciekawa 3", "Kraków", "09-333", 3333300L);
         em.persist(sup1);
         em.persist(sup2);
         em.persist(sup3);
@@ -70,7 +70,7 @@ public class Generator {
     public static void cascadeTest(Session s) {
         Category cat1 = new Category("Konserwy");
         s.save(cat1);
-        Supplier sup1 = new Supplier("Kogucik","Upalna 15","Radom");
+        Supplier sup1 = new Supplier("Kogucik","Upalna 15","Radom", "21-233", 332133L);
         s.save(sup1);
 
         Product prod1 = new Product("Paprykarz Szczeciński", 47L, sup1, cat1.getCategoryId());
@@ -95,9 +95,9 @@ public class Generator {
     }
 
     public static void populateDatabase(Session s) {
-        Supplier sup1 = new Supplier("Wedel", "Fajna 2", "Wrocław");
-        Supplier sup2 = new Supplier("Hortex", "Lepsza 18", "Poznań");
-        Supplier sup3 = new Supplier("PolskieGruszki", "Ciekawa 3", "Kraków");
+        Supplier sup1 = new Supplier("Wedel", "Fajna 2", "Wrocław", "22-223", 123333L);
+        Supplier sup2 = new Supplier("Hortex", "Lepsza 18", "Poznań", "22-224", 444123L);
+        Supplier sup3 = new Supplier("PolskieGruszki", "Ciekawa 3", "Kraków", "22-252", 555123L);
         s.save(sup1);
         s.save(sup2);
         s.save(sup3);
@@ -170,5 +170,27 @@ public class Generator {
         s.save(sup1);
         s.save(sup2);
         s.save(sup3);
+    }
+
+    public static void inheritanceTest(Session s) {
+        Supplier sup1 = new Supplier("Wedel", "Fajna 2", "Wrocław", "22-223", 123333L);
+        Supplier sup2 = new Supplier("Hortex", "Lepsza 18", "Poznań", "22-224", 444123L);
+        Customer cust1 = new Customer("Maciej Dobrowolny", "Ósma 3", "Kraków", "22-252", 0.55f);
+        Customer cust2 = new Customer("Stefan Zgoda", "Zielona 3", "Kraków", "22-252", 0.1f);
+
+
+        s.save(sup1);
+        s.save(sup2);
+        s.save(cust1);
+        s.save(cust2);
+
+        Supplier sup3 = s.get(Supplier.class, sup1.getId());
+        Customer cus3 = s.get(Customer.class, cust1.getId());
+        Company comp1 = s.get(Company.class, cust2.getId());
+        Customer cus4 = (Customer) comp1;
+        System.out.println(sup3.getCompanyName());
+        System.out.println(cus3.getCompanyName());
+        System.out.println(comp1.getCompanyName());
+        System.out.println(cus4.getCompanyName());
     }
 }

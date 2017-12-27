@@ -34,7 +34,7 @@ public class Main {
     public static void main(final String[] args) throws Exception {
         try(final Session session = getSession()) {
             Transaction tx = session.beginTransaction();
-            Generator.populateDatabase(session);
+            Generator.inheritanceTest(session);
             tx.commit();
         }
     }
